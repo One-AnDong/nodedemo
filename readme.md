@@ -1,5 +1,20 @@
 # node 增删改查
 
+## 技术栈
+
+```javascript
+express + pug + mysql + bootstrap + jq
+```
+
+## 项目运行
+
+```
+git clone git@github.com:One-AnDong/nodedemo.git
+cd nodedemo
+npm install 或 yarn(推荐)
+npm run start 或 yarn start
+```
+
 # 接口信息
 
 ### 删除英雄
