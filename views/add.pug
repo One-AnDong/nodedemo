@@ -1,0 +1,41 @@
+html
+  head
+    title Hero - Admin
+    link(rel="stylesheet" href="/static/css/bootstrap.css") 
+  body 
+    header
+      div(class="page-header container")
+        h1 王者荣耀 
+          small 英雄管理器
+    div(class="container hero-list")
+      form(id='myform')
+          //- input(type="hidden" name="img" value="/static/images/0.jpg" id="headSrc")
+          table(class="table table-hover")
+            tbody
+              tr
+                td 姓名
+                td
+                  input(type="text" name="name")
+              tr
+                td 性别：
+                td
+                  input(id="nan" checked name="gender" value="男" type="radio")
+                  label(for="nan")  男
+                  |
+                  |
+                  input(name="gender" value="女" type="radio" id="nv")
+                  label(for="nv")  女               
+              tr
+                //- td 头像：
+                //- td
+                //-   img(src="/static/images/0.jpg" alt="" id="photo" width="100")
+                td 生日：
+                td
+                  input(type="date" name="birthday") 
+              tr
+                td
+                td
+                  input(class="btn btn-primary" type="button" id="sub" value="新增")
+
+  script(src="/static/js/jquery.js")
+  script(src="/static/js/add.js")
