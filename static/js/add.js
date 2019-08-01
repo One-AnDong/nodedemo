@@ -7,6 +7,7 @@ $(function() {
   const oImgSrc = $('#headSrc')
   const oAddModal = $('#add__info')
   const oAddModalText = $('#add__info .container-fluid')
+  const oEnter = $('#add__info .modal-footer button:last-child')
   //绑定事件
   oFile.on('change', handleUpload)
   oBtn.on('click', handleClick)
@@ -30,10 +31,10 @@ $(function() {
       success: function(data) {
         oAddModal.modal()
         if (data.status === 200) {
-          oAddModalText.text(`${data.msg},3s后跳转到首页`)
-          setTimeout(() => {
+          oAddModalText.text(`${data.msg},点击确认跳转到首页`)
+          oEnter.on('click', () => {
             window.location.href = '/index'
-          }, 3000)
+          })
         } else {
           oAddModalText.text(data.msg)
         }

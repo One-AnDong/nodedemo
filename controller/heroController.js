@@ -21,6 +21,13 @@ function showEdit(req, res) {
     res.render('edit', { data: result })
   })
 }
+//显示 retrieve
+function showRetrieve(req, res) {
+  const id = req.query.id
+  Model.getHero(id, (err, data) => {
+    res.render('retrieve', { data })
+  })
+}
 //上传图片
 function uploadImg(req, res) {
   let form = new formidable.IncomingForm()
@@ -138,6 +145,7 @@ const controller = {
   addHero,
   getHero,
   editHero,
-  showEdit
+  showEdit,
+  showRetrieve
 }
 module.exports = controller
