@@ -77,6 +77,27 @@ function deleteHero(req, res) {
     res.send(response)
   })
 }
+//jsonp跨域实现
+function jsonp(req, res) {
+  const id = req.query.id
+  const fnName = req.query.callback
+  Model.getHero(id, function(err, data) {
+    let response = null
+    if (err) {
+      response = {
+        status: 401,
+        msg: '查询失败'
+      }
+    } else {
+      response = {
+        status: 200,
+        msg: '查询成功',
+        data: data
+      }
+    }
+    res.send(`${fnName}(${JSON.stringify(response)})`)
+  })
+}
 //添加英雄
 function addHero(req, res) {
   Model.addHero(req.body, (err, data) => {
@@ -146,6 +167,7 @@ const controller = {
   getHero,
   editHero,
   showEdit,
-  showRetrieve
+  showRetrieve,
+  jsonp
 }
 module.exports = controller

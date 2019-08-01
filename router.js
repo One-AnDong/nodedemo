@@ -11,4 +11,6 @@ router.get('/api/getHero', heroController.getHero)
 router.post('/api/addHero', heroController.addHero)
 router.post('/api/editHero', heroController.editHero)
 router.post('/api/uploadImg', heroController.uploadImg)
+//jsonp跨域
+router.get('/jsonp/test', heroController.jsonp)
 module.exports = router
