@@ -5,8 +5,9 @@ $(function() {
   const oFile = $('#img')
   const oImg = $('#photo')
   const oImgSrc = $('#headSrc')
-  const oAddModal = $('#add__info')
-  const oAddModalText = $('#add__info .container-fluid')
+  const oAddModal = $('#edit__info')
+  const oAddModalText = $('#edit__info .container-fluid')
+  const oEnter = $('#edit__info .modal-footer button:last-child')
   //绑定事件
   oFile.on('change', handleUpload)
   oBtn.on('click', handleClick)
@@ -23,17 +24,18 @@ $(function() {
     let data = $('#myform').serialize()
     //发起请求
     $.ajax({
-      url: '/api/addHero',
+      url: '/api/editHero',
       type: 'POST',
       dataType: 'JSON',
       data: data,
       success: function(data) {
         oAddModal.modal()
         if (data.status === 200) {
-          oAddModalText.text(`${data.msg},3s后跳转到首页`)
-          setTimeout(() => {
+          oAddModalText.text(`${data.msg}`)
+          //点击确认按钮跳转跳转
+          oEnter.on('click', () => {
             window.location.href = '/index'
-          }, 3000)
+          })
         } else {
           oAddModalText.text(data.msg)
         }
@@ -42,21 +44,44 @@ $(function() {
   }
   //上传图片事件处理
   function handleUpload() {
-    const formData = new FormData()
+    let formData = new FormData()
     formData.append('pic', this.files[0])
-    // console.log(this.files[0])
+    const oMask = $('.mask')
+    const oProgress = $('.progress')
+    const oProgressBar = $('.progress-bar')
+    //显示
+    oMask.show()
+    oProgress.show()
     $.ajax({
       url: '/api/uploadImg',
       type: 'POST',
       data: formData,
+      contentType: false,
+      processData: false,
+      xhr: function() {
+        let xhr = new XMLHttpRequest()
+        xhr.upload.onprogress = function(e) {
+          let percent = Math.floor((e.loaded / e.total) * 10000) / 100 + '%'
+          oProgressBar.css('width', percent)
+          oProgressBar.html(percent)
+        }
+        return xhr
+      },
+      complete: function() {
+        oMask.hide()
+        oProgress.hide()
+        oProgressBar.html('0%')
+        oProgressBar.css('width', 0)
+      },
+      error: function() {
+        alert('上传失败')
+      },
       success: function(data) {
         if (data.status === 200) {
           oImg.attr('src', data.base + data.name)
           oImgSrc.val(data.name)
         }
-      },
-      contentType: false,
-      processData: false
+      }
     })
   }
 })

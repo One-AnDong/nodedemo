@@ -1,0 +1,72 @@
+html
+  head
+    title Hero - Admin
+    link(rel="stylesheet" href="/static/lib/css/bootstrap.css") 
+    link(rel="stylesheet", href="/static/css/main.css")
+  body 
+    header
+      div(class="page-header container")
+        h1 王者荣耀 
+          small 英雄管理器
+    div(class="container hero-list")
+      form(id='myform')
+          input(type="hidden" name="id" value=data[0].id id="hero")  
+          table(class="table table-hover")
+            tbody
+              tr
+                td 姓名
+                td
+                  input(type="text" name="name" value=data[0].name)
+              tr
+                td 性别：
+                td 
+                  if data[0].gender ==='男'
+                    input(id="nan" checked name="gender" value="男" type="radio")
+                    label(for="nan")  男
+                    |
+                    |
+                    input(name="gender" value="女" type="radio" id="nv")
+                    label(for="nv")  女
+                  else
+                    input(id="nan" name="gender" value="男" type="radio")
+                    label(for="nan")  男
+                    |
+                    |
+                    input(name="gender" checked value="女" type="radio" id="nv")
+                    label(for="nv")  女      
+              tr
+                td 头像：
+                td
+                  img(src="/static/images/"+data[0].img alt="" id="photo" width="100")
+                  |
+                  |
+                  input(type="file" id="img")
+              tr
+                td 生日：
+                td
+                  input(type="date" name="birthday" value=data[0].birthday) 
+              tr
+                td
+                td
+                  input(class="btn btn-primary" type="button" id="sub" value="新增")
+          input(type="hidden" name="img" value=data[0].img id="headSrc")  
+    
+    .mask
+    .progress
+      .progress-bar(role='progressbar', style='width: 0%;', aria-valuenow='25', aria-valuemin='0', aria-valuemax='100') 0%
+    #edit__info.modal.fade(tabindex='-1', role='dialog', aria-labelledby='modelTitleId', aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-header
+            h5.modal-title 提示
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
+            .container-fluid
+              | xx
+          .modal-footer
+            button.btn.btn-primary(type='button', data-dismiss='modal')
+              | 确定
+  script(src="/static/lib/js/jquery.js")
+  script(src="/static/lib/js/bootstrap.js")
+  script(src="/static/js/edit.js")

@@ -1,39 +1,69 @@
 html
   head
     title= 王者荣耀管理器
-    link(rel="stylesheet" href="/static/css/bootstrap.css")
+    link(rel="stylesheet" href="/static/lib/css/bootstrap.css")
   body 
-  header
-    div(class="page-header container")
-      h1 王者荣耀 
-        small 英雄管理器
-  div(class="container hero-list")
-    a(class="btn btn-success pull-right" href="") 添加英雄
-    table(class="table table-hover")
-      thead
-        th 编号
-        th 名称
-        th 性别
-        th 生日
-        th 操作
-      tbody
-        each val in list
-          tr
-            td=val.id
-            td=val.name 
-            td=val.gender 
-            td=val.birthday
-            td
-              a(href="") 查看
-              |
-              |
-              a(href="") 编辑
-              |
-              |
-              a(class="delete" href="") 删除
-     
-  script(src="/static/js/jquery.js")
-  script(src="/static/js/bootstrap.js")
+    header
+      div(class="page-header container")
+        h1 王者荣耀 
+          small 英雄管理器
+    div(class="container hero-list")
+      a(class="btn btn-success pull-right" href="/add") 添加英雄
+      table(class="table table-hover")
+        thead
+          th 编号
+          th 名称
+          th 性别
+          th 生日
+          th 头像
+          th 操作
+        tbody
+          each val in list
+            tr
+              td=val.id
+              td=val.name 
+              td=val.gender 
+              td=val.birthday
+              td
+                img(style="width:50px;height:50px" src="/static/images/"+val.img )
+              td
+                a(href="/retrieve") 查看
+                |
+                |
+                a(href="/edit?id="+val.id) 编辑
+                |
+                |
+                a(class="delete" href="") 删除
+    
+  #modelId.modal.fade(tabindex='-1', role='dialog', aria-labelledby='modelTitleId', aria-hidden='true')
+    .modal-dialog(role='document')
+          .modal-content
+            .modal-header
+              h5.modal-title 提示
+              button.close(type='button', data-dismiss='modal', aria-label='Close')
+                span(aria-hidden='true') ×
+            .modal-body
+              .container-fluid
+                | 你确定要删除吗？
+            .modal-footer
+              button.btn.btn-secondary(type='button', data-dismiss='modal')
+                | 取消
+              button.btn.btn-primary.btn-sure-del(type='button', data-id='null')
+                | 确定
+  #delete__info.modal.fade(tabindex='-1', role='dialog', aria-labelledby='modelTitleId', aria-hidden='true')
+    .modal-dialog(role='document')
+      .modal-content
+        .modal-header
+          h5.modal-title 提示
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+        .modal-body
+          .container-fluid
+            | xx
+        .modal-footer
+          button.btn.btn-primary(type='button', data-dismiss='modal')
+            | 确定
+  script(src="/static/lib/js/jquery.js")
+  script(src="/static/lib/js/bootstrap.js")
   script(src="/static/js/index.js")
-
 

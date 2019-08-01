@@ -1,7 +1,7 @@
 html
   head
     title Hero - Admin
-    link(rel="stylesheet" href="/static/css/bootstrap.css") 
+    link(rel="stylesheet" href="/static/lib/css/bootstrap.css") 
   body 
     header
       div(class="page-header container")
@@ -9,7 +9,6 @@ html
           small 英雄管理器
     div(class="container hero-list")
       form(id='myform')
-          //- input(type="hidden" name="img" value="/static/images/0.jpg" id="headSrc")
           table(class="table table-hover")
             tbody
               tr
@@ -26,9 +25,13 @@ html
                   input(name="gender" value="女" type="radio" id="nv")
                   label(for="nv")  女               
               tr
-                //- td 头像：
-                //- td
-                //-   img(src="/static/images/0.jpg" alt="" id="photo" width="100")
+                td 头像：
+                td
+                  img(src="/static/images/0.jpg" alt="" id="photo" width="100")
+                  |
+                  |
+                  input(type="file" id="img")
+              tr
                 td 生日：
                 td
                   input(type="date" name="birthday") 
@@ -36,6 +39,21 @@ html
                 td
                 td
                   input(class="btn btn-primary" type="button" id="sub" value="新增")
+          input(type="hidden" name="img" value="0.jpg" id="headSrc")
+    #add__info.modal.fade(tabindex='-1', role='dialog', aria-labelledby='modelTitleId', aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-header
+            h5.modal-title 提示
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
+            .container-fluid
+              | xx
+          .modal-footer
+            button.btn.btn-primary(type='button', data-dismiss='modal')
+              | 确定
 
-  script(src="/static/js/jquery.js")
+  script(src="/static/lib/js/jquery.js")
+  script(src="/static/lib/js/bootstrap.js")
   script(src="/static/js/add.js")

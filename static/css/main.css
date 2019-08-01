@@ -1,0 +1,26 @@
+/* edit页面模块
+---------------------------------------------- */
+.mask {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+.progress {
+  display: none;
+  position: fixed;
+  width: 600px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.progress-bar {
+  height: 100%;
+  color: hotpink;
+}
+/* add页面模块
+---------------------------------------------- */
