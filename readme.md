@@ -70,6 +70,57 @@ npm run start 或 yarn start
   | gender   | 性别          | 可选 |
   | birthday | 生日          | 可选 |
 
+### 上传头像
+
+请求路径：/api/uploadImg
+
+- 请求方法：POST
+
+- 请求参数：
+
+  | 参数名称 | 参数说明 | 备注                  |
+  | -------- | -------- | --------------------- |
+  | pic      | 图片数据 | formdata 格式包装数据 |
+
+### jsonp 获取英雄数据
+
+请求路径：/jsonp/test
+
+- 请求方法: GET
+
+- 请求参数：
+
+  | 参数名称 | 参数说明   | 备注 |
+  | -------- | ---------- | ---- |
+  | id       | 英雄 id    | 必选 |
+  | callback | 回调函数名 | 必选 |
+
+# 数据库
+
+```
+//带数据版的查看仓库里node.mysql
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(20) NOT NULL,
+  `gender` varchar(1) NOT NULL,
+  `birthday` date NOT NULL,
+  `isdelete` int(10) NOT NULL DEFAULT '0',
+  `img` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+```
+
 # 目录结构
 
 ```javascript
